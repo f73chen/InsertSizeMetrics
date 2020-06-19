@@ -4,12 +4,14 @@ workflow insertSizeMetrics {
   input {
     File inputBam
     String outputFileNamePrefix = basename(inputBam, '.bam')
+    String docker = "g3chen/insertsizemetrics:1.0"
   }
 
   call collectInsertSizeMetrics {
     input:
       inputBam = inputBam,
-      outputPrefix = outputFileNamePrefix
+      outputPrefix = outputFileNamePrefix,
+      docker = docker
   }
 
   output {
@@ -20,6 +22,7 @@ workflow insertSizeMetrics {
   parameter_meta {
     inputBam: "Input file (bam or sam)."
     outputFileNamePrefix: "Output prefix to prefix output file names with."
+    docker: "Docker container to run the workflow in."
   }
 
   meta {
@@ -39,12 +42,14 @@ workflow insertSizeMetrics {
 task collectInsertSizeMetrics {
   input {
     File inputBam
-    String picardJar = "$PICARD_ROOT/picard.jar"
+    # String picardJar = "$PICARD_ROOT/picard.jar"
+    File picardJar = "$PICARD_ROOT/picard.jar"
     Float minimumPercent = 0.5
     String outputPrefix = "OUTPUT"
     Int jobMemory = 18
     String modules = "picard/2.21.2 rstats/3.6"
     Int timeout = 12
+    String docker
   }
 
   parameter_meta {
@@ -55,6 +60,7 @@ task collectInsertSizeMetrics {
     jobMemory: "Memory (in GB) allocated for job."
     modules: "Environment module names and version to load (space separated) before command execution."
     timeout: "Maximum amount of time (in hours) the task can run for."
+    docker: "Docker container to run the workflow in."
   }
 
   meta {
@@ -75,7 +81,8 @@ task collectInsertSizeMetrics {
   >>>
 
   runtime {
-    memory: "~{jobMemory} GB"
+  	docker:  "~{docker}"
+    memory:  "~{jobMemory} GB"
     modules: "~{modules}"
     timeout: "~{timeout}"
   }
