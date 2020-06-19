@@ -43,7 +43,7 @@ task collectInsertSizeMetrics {
   input {
     File inputBam
     # String picardJar = "$PICARD_ROOT/picard.jar"
-    File picardJar = "$PICARD_ROOT/picard.jar"
+    File picardJar = "picard.jar"
     Float minimumPercent = 0.5
     String outputPrefix = "OUTPUT"
     Int jobMemory = 18
