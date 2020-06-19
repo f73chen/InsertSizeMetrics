@@ -12,6 +12,17 @@ Workflow to run picard InsertSizeMetrics
 
 ## Usage
 
+### Dockstore
+Make a runtime JSON template and fill in desired inputs, outputs, and other parameters
+```
+dockstore workflow convert entry2json --entry github.com/f73chen/InsertSizeMetrics/InsertSizeMetrics:master > Dockstore.json
+vim Dockstore.json
+```
+Run locally with the Dockstore CLI
+```
+dockstore workflow launch --entry github.com/f73chen/InsertSizeMetrics/InsertSizeMetrics:master --json Dockstore.json
+```
+
 ### Cromwell
 ```
 java -jar cromwell.jar run insertSizeMetrics.wdl --inputs inputs.json
