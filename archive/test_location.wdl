@@ -4,26 +4,27 @@ workflow test_location {
 
 task find_tools {
     command {
-        ls $PICARD_ROOT
-        echo "@@@@@@@@@@@@@@@@"
         ls $JAVA_ROOT
+        echo "@@@@@@@@@@@@@@@@"
+        ls $PICARD_ROOT
         echo "@@@@@@@@@@@@@@@@"
         ls $RSTATS_ROOT
         echo "@@@@@@@@@@@@@@@@"
-
+        
         echo $PATH
-        echo "################"
+        echo "@@@@@@@@@@@@@@@@"
         echo $MANPATH
-        echo "################"
+        echo "@@@@@@@@@@@@@@@@"
         echo $LD_LIBRARY_PATH
-        echo "################"
+        echo "@@@@@@@@@@@@@@@@"
         echo $R_LIBS_SITE
-        echo "################"
+        echo "@@@@@@@@@@@@@@@@"
     }
     output{
         String message = read_string(stdout())
     }
     runtime {
-        docker: "g3chen/insertsizemetrics:1.0"
+        docker: "g3chen/insertsizemetrics@sha256:679690868d0eb02a83ccbe3655a109daefb8f69983b8e17a1b4190310e852e83"
+        modules: "picard/2.21.2 rstats/3.6"
     }
 }
