@@ -1,4 +1,4 @@
 {
-  "insertSizeMetrics.inputBam": "/home/ubuntu/Downloads/sample_data/PCSI_0090_Pa_P_PE_501_WG_526_170203_D00343_0160_ACACFLANXX_CCGTCC_L008_001.annotated.chr22.bam",
+  "insertSizeMetrics.inputBam": "/.mounts/labs/gsi/testdata/insertSizeMetrics/input_data/PCSI_0090_Pa_P_PE_501_WG_526_170203_D00343_0160_ACACFLANXX_CCGTCC_L008_001.annotated.chr22.bam",
   "insertSizeMetrics.outputFileNamePrefix": "PCSI_0090_Pa_P_PE_501_WG_526_170203_D00343_0160_ACACFLANXX_CCGTCC_L008_001"
 }
